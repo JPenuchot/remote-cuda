@@ -26,7 +26,8 @@ all: $(NAME)
 .c.o:
 	$(CC) $(COMMON_FLAGS) $(CCFLAGS) -MMD -c -o $@ $<
 .cu.o:
-	nvcc $(CUFLAGS) -c -o $@ $<
+	$(NVCC) $(CUFLAGS) -MM -MF $(@:.o=.d) $<
+	$(NVCC) $(CUFLAGS) -c -o $@ $<
 
 # Linking
 $(NAME): $(OBJ)
