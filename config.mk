@@ -22,13 +22,14 @@ COMMON_FLAGS += -DVERSION=\"$(VERSION)\"
 COMMON_FLAGS += -Wall -Wextra -Werror -Wnull-dereference \
                 -Wdouble-promotion -Wshadow
 
-# Link flags
 CXXFLAGS += -std=c++17
 CXXFLAGS += -Iinclude -I$(CUDA_HOME)/include
 
-# Includes/Libs
 CCFLAGS  += -std=c11
 CCFLAGS  += -Iinclude -I$(CUDA_HOME)/include
+
+CUFLAGS  += -std=c++14
+CUFLAGS  += -Iinclude
 
 LDFLAGS  += -fPIC -O3
 LDFLAGS  += -lm -lcudart
