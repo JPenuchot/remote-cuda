@@ -56,4 +56,4 @@ slurm: $(NAME)
 dump: $(NAME)
 	objdump -dC $(NAME) > $(NAME).asm
 
-.PHONY: all clean remote run dump
+.PHONY: all clean slurm run dump
