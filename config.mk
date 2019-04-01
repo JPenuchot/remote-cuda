@@ -7,9 +7,9 @@ PREFIX     ?= /usr/local
 MANPREFIX  ?= $(PREFIX)/share/man
 
 # Remote exec
-REMOTEHOST   ?= yourhost
-REMOTEPATH   ?= ~/.remote
-REMOTENODE   ?= somenode
+SLURM_HOST ?= yourhost
+SLURM_PATH ?= ~/.remote
+SLURM_NODE ?= somenode
 
 # Compilers
 CXX  ?= clang++

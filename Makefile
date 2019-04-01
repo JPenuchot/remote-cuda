@@ -48,10 +48,10 @@ run: $(NAME)
 	./$(NAME)
 
 # Run on a remote host using SLURM
-remote: $(NAME)
-	ssh $(REMOTEHOST) mkdir -p $(REMOTEPATH)
-	scp $(NAME) $(REMOTEHOST):$(REMOTEPATH)/$(NAME)
-	ssh $(REMOTEHOST) srun -p $(REMOTENODE) $(REMOTEPATH)/$(NAME)
+slurm: $(NAME)
+	ssh $(SLURM_HOST) mkdir -p $(SLURM_PATH)
+	scp $(NAME) $(SLURM_HOST):$(SLURM_PATH)/$(NAME)
+	ssh $(SLURM_HOST) srun -p $(SLURM_NODE) $(SLURM_PATH)/$(NAME)
 
 dump: $(NAME)
 	objdump -dC $(NAME) > $(NAME).asm
