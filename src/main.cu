@@ -31,7 +31,7 @@ struct cuda_managed_alloc
 template<typename T>
 using cuda_vector = std::vector<T, cuda_managed_alloc<T>>;
 
-int main(int argc, char const *argv[])
+int main(int, char const *[])
 {
   std::vector<float, cuda_managed_alloc<float>> v(1024);
 
