@@ -20,9 +20,9 @@ all: $(NAME)
 
 # Compilation
 .cpp.o:
-	$(CXX) $(COMMON_FLAGS) $(CXXFLAGS) -MMD -c -o $@ $<
+	$(CXX) $(CXXFLAGS) -MMD -c -o $@ $<
 .cu.o:
-	$(CU) $(COMMON_FLAGS) $(CUFLAGS) -MMD -c -o $@ $<
+	$(CXX) $(CXXFLAGS) $(CUFLAGS) -MMD -c -o $@ $<
 
 # Linking
 $(NAME): $(OBJ)
