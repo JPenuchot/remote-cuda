@@ -12,7 +12,8 @@ SLURM_PATH ?= ~/.remote
 SLURM_NODE ?= somenode
 
 # Compiler
-CXX  ?= clang++
+CXX ?= clang++
+CU  ?= clang++
 
 # Compile flags
 CXXFLAGS += -O3 -march=native

@@ -22,7 +22,7 @@ all: $(NAME)
 .cpp.o:
 	$(CXX) $(CXXFLAGS) -MMD -c -o $@ $<
 .cu.o:
-	$(CXX) $(CXXFLAGS) $(CUFLAGS) -MMD -c -o $@ $<
+	$(CU) $(CXXFLAGS) $(CUFLAGS) -MMD -c -o $@ $<
 
 # Linking
 $(NAME): $(OBJ)
