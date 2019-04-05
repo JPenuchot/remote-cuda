@@ -1,19 +1,17 @@
 .POSIX:
-.SUFFIXES: .c .cpp .hpp .h .cu .o .d .asm
+.SUFFIXES: .cpp .hpp .h .cu .o .d .asm
 
 include config.mk
 
 # Sources
 CXXSRC = $(shell find src -name "*.cpp")
-CCSRC  = $(shell find src -name "*.c")
 CUSRC  = $(shell find src -name "*.cu")
 
 # Objects
 CXXOBJ = $(CXXSRC:.cpp=.o)
-CCOBJ  = $(CCSRC:.c=.o)
 CUOBJ  = $(CUSRC:.cu=.o)
 
-OBJ    = $(CXXOBJ) $(CCOBJ) $(CUOBJ)
+OBJ    = $(CXXOBJ) $(CUOBJ)
 
 # Dependency files
 DEPS   = $(OBJ:.o=.d)
@@ -23,11 +21,8 @@ all: $(NAME)
 # Compilation
 .cpp.o:
 	$(CXX) $(COMMON_FLAGS) $(CXXFLAGS) -MMD -c -o $@ $<
-.c.o:
-	$(CC) $(COMMON_FLAGS) $(CCFLAGS) -MMD -c -o $@ $<
 .cu.o:
-	$(NVCC) $(CUFLAGS) -MM -MF $(@:.o=.d) $<
-	$(NVCC) $(CUFLAGS) -c -o $@ $<
+	$(CU) $(COMMON_FLAGS) $(CUFLAGS) -MMD -c -o $@ $<
 
 # Linking
 $(NAME): $(OBJ)
@@ -37,7 +32,6 @@ $(NAME): $(OBJ)
 -include $(DEPS)
 
 debug: CXXFLAGS += -DDEBUG -g
-debug: CCFLAGS  += -DDEBUG -g
 debug: CUFLAGS  += -DDEBUG -g
 debug: $(NAME)
 

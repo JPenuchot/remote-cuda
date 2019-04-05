@@ -13,8 +13,7 @@ SLURM_NODE ?= somenode
 
 # Compilers
 CXX  ?= clang++
-CC   ?= clang
-NVCC ?= nvcc
+CU   ?= clang++
 
 # Compile flags
 COMMON_FLAGS += -O3 -march=native
@@ -22,14 +21,13 @@ COMMON_FLAGS += -DVERSION=\"$(VERSION)\"
 COMMON_FLAGS += -Wall -Wextra -Werror -Wnull-dereference \
                 -Wdouble-promotion -Wshadow
 
+INCLUDES += -Iinclude -I$(CUDA_HOME)/include
+
 CXXFLAGS += -std=c++17
-CXXFLAGS += -Iinclude -I$(CUDA_HOME)/include
+CXXFLAGS += $(INCLUDES)
 
-CCFLAGS  += -std=c11
-CCFLAGS  += -Iinclude -I$(CUDA_HOME)/include
-
-CUFLAGS  += -std=c++14
-CUFLAGS  += -Iinclude
+CUFLAGS  += -std=c++17 --cuda-gpu-arch=sm_35
+CUFLAGS  += $(INCLUDES)
 
 LDFLAGS  += -fPIC -O3
 LDFLAGS  += -lm -lcudart
